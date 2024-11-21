@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+{% if not current_user.is_authenticated %}
+    <script>window.location.href = "{{ url_for('login') }}";</script>
+{% else %}
+<head>
+    <meta charset="UTF-8">
+    <title>Chenna - Looker Studio</title>
+</head>
+<body>
+        <div class="site-section">
+            <iframe 
+                width="100%" 
+                height="900" 
+                src="https://lookerstudio.google.com/embed/reporting/9585bf8c-fbc5-42da-b5ce-c638f573eaa0/page/p_z6uogjj84c" 
+                frameborder="0" 
+                style="border:0" 
+                allowfullscreen 
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+            </iframe>
+        </div>
+</body>
+{% endif %}
+</html>
+    

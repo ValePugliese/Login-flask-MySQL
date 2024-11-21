@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+{% if not current_user.is_authenticated %}
+    <script>window.location.href = "{{ url_for('login') }}";</script>
+{% else %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard - {{ current_user.fullname }}</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .arrow-transparent {
+            float: right;
+            opacity: 0.2;
+            margin-top: 3px;
+        }
+
+        .nav-link:hover .arrow-transparent {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon rotate-n-15"></div>
+                <div class="sidebar-brand-text mx-3" style="pointer-events: none;">
+                    <img src="{{ url_for('static', filename='img/logo chenna.png') }}" alt="Logo" class="brand-logo" style="height: 90px; pointer-events: none;">
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <div class="nav-link">
+                    <span>Bienvenido</span>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Datos</div>
+
+            <!-- Nav Items with dynamic loading -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadContent('looker-studio')">
+                    <span>Looker Studio</span>
+                    <i class="fas fa-chevron-right arrow-transparent"></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadContent('scraping')">
+                    <span>Scraping</span>
+                    <i class="fas fa-chevron-right arrow-transparent"></i>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <div class="navbar-brand">
+                        <img src="{{ url_for('static', filename='img/dec.png') }}" alt="Logo" height="40">
+                    </div>
+
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="btn btn-dark btn-sm mt-3.5" href="{{ url_for('logout') }}">Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div id="contentArea">
+                        <!-- Default dashboard content -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Page Content -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        function loadContent(page) {
+            const contentArea = document.getElementById('contentArea');
+            fetch(`/${page}`)
+                .then(response => response.text())
+                .then(html => {
+                    contentArea.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error cargando el contenido:', error);
+                });
+        }
+    </script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+</body>
+{% endif %}
+</html>

@@ -1,0 +1,59 @@
+
+
+{% block content %}
+{% if not current_user.is_authenticated %}
+    <script>window.location.href = "{{ url_for('login') }}";</script>
+{% else %}
+    <div class="container-fluid">
+        <!-- Contenedor principal con el mismo estilo que Looker Studio -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Analisis de XML</h1>
+        </div>
+
+        <!-- Contenido del scraping con estilos consistentes -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <!-- Chenna Section -->
+                        <div class="site-section mb-4">
+                            <h2 class="h4 mb-3"><a href="https://www.chenna.com.ar/">Chenna</a></h2>
+                            <div class="bg-light p-3 rounded">
+                                <p class="mb-2"><strong>Cantidad de Productos:</strong> 155</p>
+                                <p class="mb-2"><strong>Valor Promedio de Productos:</strong> AR$ 88,155.10</p>
+                            </div>
+                            <h3 class="h5 mt-3">Cambios de Precios Detectados:</h3>
+                            <p>No se detectaron cambios de precios.</p>
+                            <p class="text-muted small">Última actualización: 2024-10-17T20:46:09.356999</p>
+                        </div>
+
+                        <!-- Alain De France Section -->
+                        <div class="site-section mb-4">
+                            <h2 class="h4 mb-3"><a href="https://alaindefrance.com.ar/">Alain De France</a></h2>
+                            <div class="bg-light p-3 rounded">
+                                <p class="mb-2"><strong>Cantidad de Productos:</strong> 555</p>
+                                <p class="mb-2"><strong>Valor Promedio de Productos:</strong> AR$ 392,133.87</p>
+                            </div>
+                            <h3 class="h5 mt-3">Cambios de Precios Detectados:</h3>
+                            <p>No se detectaron cambios de precios.</p>
+                            <p class="text-muted small">Última actualización: 2024-10-17T20:46:10.309162</p>
+                        </div>
+
+                        <!-- Blaque Section -->
+                        <div class="site-section mb-4">
+                            <h2 class="h4 mb-3"><a href="https://www.blaque.com.ar/">Blaque</a></h2>
+                            <div class="bg-light p-3 rounded">
+                                <p class="mb-2"><strong>Cantidad de Productos:</strong> 570</p>
+                                <p class="mb-2"><strong>Valor Promedio de Productos:</strong> AR$ 63,739.19</p>
+                            </div>
+                            <h3 class="h5 mt-3">Cambios de Precios Detectados:</h3>
+                            <p>No se detectaron cambios de precios.</p>
+                            <p class="text-muted small">Última actualización: 2024-10-17T20:46:11.168015</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
